@@ -133,12 +133,11 @@ console.log(rowObjects);
 
 
 
-
-
-poped = rowObjects.pop();
+let shifted = rowObjects.shift();
+let popped = rowObjects.pop();
 
 console.log(rowObjects);
-console.log(poped);
+console.log(popped);
 
 rowObjects.splice(1, 0, { id: "48", name: "Barry", occupation: "Runner", age: "25" });
 
@@ -147,10 +146,33 @@ rowObjects.push({ id: "7", name: "Bilbo", occupation: "None", age: "111" });
 console.log(rowObjects);
 
 
+let totalAge=0;
+let averageAge;
+let number_of_people = rowObjects.length;
+
+for (let i = 1; i < number_of_people; i++) {
+    totalAge += Number(rowObjects[i].age);
+}
+
+console.log(rowObjects[1].age);
+console.log(totalAge);
+averageAge = totalAge / number_of_people;
+
+console.log(averageAge);
 
 
 
 
+
+
+// Part 5
+
+let heading=(Object.keys(rowObjects[0]))
+console.log(heading[1]);
+console.log(rowObjects[0][heading[1]]);
+// for(i in heading){
+//     console.log(rowObjects[i+1][heading[i]]);
+// }   
 
 
 
