@@ -159,6 +159,7 @@ console.log("-p1 New/refactored-way----------------------------------------")
 
 let cell_new ='';
 let row_new = '';
+let new_array = [];
 
 // Loop through the characters of a test string
 
@@ -169,18 +170,22 @@ for (let i = 0; i < test_string.length; i++) {
     if (char === ',' || char === '\n') {
         if (cell_new.length > 0) {
          row_new += cell_new + ' ';
+
             cell_new = '';
         }
         // Log the row when a new line is encountered
         if (char === '\n') {
-            console.log(row_new);
+            //console.log(row_new);
+            new_array.push(row_new);
             cell_new = '';
             row_new = '';
         }
     } else { 
         //Handle the last cell in the row    
         if (i == test_string.length - 1){
-            console.log(row_new);}
+            //console.log(row_new);
+            new_array.push(row_new);
+        }
             //Concatenate the characters of the cell
             else{
             cell_new += test_string[i];
@@ -189,7 +194,7 @@ for (let i = 0; i < test_string.length; i++) {
 }
 
 
-
+console.log(new_array);
 
 console.log("p2=====================================");
 
@@ -330,7 +335,7 @@ const rowObjects = row.map((row, index) => {
     return { id, name, occupation, age };
 })
 
-// console.log(rowObjects);
+ console.log(rowObjects);
 
 //produces the same output as the function above
 
