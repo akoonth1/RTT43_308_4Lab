@@ -309,7 +309,7 @@ function transform(text) {
 // Transforming the text into an array of objects with the first row as keys
 function transformToObject(text) {
     let rows = text.split('\n');
-    let keys = rows[0].split(',');
+    let keys = rows[0].split(',').map(key => key.toLowerCase());
     let csv_object= [];
 
 
@@ -334,7 +334,7 @@ const rowObjects = row.map((row, index) => {
     const [id, name, occupation, age] = row;
     return { id, name, occupation, age };
 })
-
+rowObjects.shift(); // Remove the first object which is the heading row
  console.log(rowObjects);
 
 //produces the same output as the function above
