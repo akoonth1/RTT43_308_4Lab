@@ -10,6 +10,13 @@
 // You do not need to format the data, the following works well.
 // console.log(cell1, cell2, cell3, cell4);
 // console.log(cell5, cell6, cell7, cell8);
+
+
+//Part 1
+
+
+console.log("p1=====================================");
+
 let counter_c = 0
 
 let counter_n =0
@@ -34,17 +41,10 @@ for (let i_t =0; i_t < test_string.length; i_t++)
         {
 
     counter_c += 1
-            
-            // if(b_counter > counter_c )
-            //     {
-            //         b_counter += 1
-            //         break
-            //     }
-    
-
+ 
     }
 
- 
+
 
    if (test_string[i_t] =="\n")
     {
@@ -53,10 +53,7 @@ for (let i_t =0; i_t < test_string.length; i_t++)
 
 }
 
-
-
 }
-
 
 
 // // Add 1 to count since each initial row has a free cell
@@ -72,10 +69,8 @@ let escapechar ="\n"
 let fulltext =""
 let text3 = ""
 
-console.log("-p1----------------------------------------")
-// for (let x = 0; x <=true_count_cells-18; x++){
-    // console.log(x);
-    // cells += "cell"+x+","
+console.log("-p1 original-way----------------------------------------")
+
 
     outerloop:
     for (let x = 0; x <= test_string.length; x++){
@@ -100,7 +95,7 @@ console.log("-p1----------------------------------------")
                        
                         x = i_t 
                         
-                        // console.log(x+"xflag")
+
 
                         if( test_string[i_t] =="\n"){
                          
@@ -125,6 +120,16 @@ console.log("-p1----------------------------------------")
                     }
             }
         }    
+
+    
+
+
+// To produce the variable cells for ease of use
+//         for (let i = 0; i < 4; i++) {
+//             let start = i * 4;
+//             console.log(`console.log(cells[${start}], cells[${start + 1}], cells[${start + 2}], cells[${start + 3}]);`);
+//         }
+
 // console.log(cells[0], cells[1], cells[2], cells[3]);
 // console.log(cells[4], cells[5], cells[6], cells[7]);
 // console.log(cells[8], cells[9], cells[10], cells[11]);
@@ -134,8 +139,7 @@ console.log("-p1----------------------------------------")
 
 console.log("-----------------------------------------")
 
-eval(text3) //there's probably a better way to set a list of variables, was trying not to use an array
-
+eval(text3) // Making an array without using an array []
 
 // for (let i = 0; i < 4; i++) {
 //     let start = i * 4 + 1;
@@ -148,19 +152,53 @@ console.log(cell9, cell10, cell11, cell12);
 console.log(cell13, cell14, cell15, cell16);
 console.log(cell17, cell18, cell19, cell20);
 
+//console.log(text3)  //this prints out all separate variables
+
+console.log("-p1 New/refactored-way----------------------------------------")
+
+
+let cell_new ='';
+let row_new = '';
+
+// Loop through the characters of a test string
+
+for (let i = 0; i < test_string.length; i++) {
+    let char = test_string[i];
+
+// Identify the end of a cell or row and log the cell or row
+    if (char === ',' || char === '\n') {
+        if (cell_new.length > 0) {
+         row_new += cell_new + ' ';
+            cell_new = '';
+        }
+        // Log the row when a new line is encountered
+        if (char === '\n') {
+            console.log(row_new);
+            cell_new = '';
+            row_new = '';
+        }
+    } else { 
+        //Handle the last cell in the row    
+        if (i == test_string.length - 1){
+            console.log(row_new);}
+            //Concatenate the characters of the cell
+            else{
+            cell_new += test_string[i];
+            }      
+    }
+}
 
 
 
+
+console.log("p2=====================================");
 
 //Part 2
-
-//... see part 1?
-console.log("p2=====================================");
 
 const sample_text_1 ="ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor’s Assistant,26";
 const sample_text_2b ="Index,Mass (kg),Spring 1 (m),Spring 2 (m)\n1,0.00,0.050,0.050\n2,0.49,0.066,0.066\n3,0.98,0.087,0.080\n4,1.47,0.116,0.108\n5,1.96,0.142,0.138\n6,2.45,0.166,0.158\n7,2.94,0.193,0.174\n8,3.43,0.204,0.192\n9,3.92,0.226,0.205\n10,4.41,0.238,0.232"
 
-
+//Make string an Array
 
 //console.log("Hello World and test");
 
@@ -228,6 +266,7 @@ if (current_cell.length > 0) {
 console.log(row)
 
 
+console.log("p3=====================================");
 
 //Part 3
 
@@ -247,7 +286,7 @@ console.log(row)
 //  { id: "63", name: "Blaine", occupation: "Quiz Master", age: "58" },
 //  { id: "98", name: "Bill", occupation: "Doctor’s Assistant", age: "26" }]
 
-console.log("p3=====================================");
+
 
 let args = sample_text_1.split(/[\n,]/);
 
@@ -261,11 +300,6 @@ function transform(text) {
     }
     return row_transform
 }
-// let row_transform = sample_text_1.split('\n')
-// for (let i = 0; i < row_transform.length; i++) {
-//     row_transform[i] = row_transform[i].split(',')
-// }
-//console.log(transform(sample_text_1));
 
 // Transforming the text into an array of objects with the first row as keys
 function transformToObject(text) {
@@ -285,12 +319,10 @@ function transformToObject(text) {
 
     return csv_object;
 }
-
+//Using functions for ease of use and for practice with functions
 console.log(transformToObject(sample_text_1));
 
 // Part 3 with done differently
-
-
 
 
 const rowObjects = row.map((row, index) => {    
@@ -300,13 +332,14 @@ const rowObjects = row.map((row, index) => {
 
 // console.log(rowObjects);
 
-
-
-
+//produces the same output as the function above
 
 
 //Bill line is strangely formatted, but not extra characters exist in the string. I will leave it as is for now. I will fix it later if it becomes a problem.
 
+
+
+console.log("p4=====================================");
 
 //Part 4
 
@@ -323,7 +356,6 @@ const rowObjects = row.map((row, index) => {
 //  { id: "7", name: "Bilbo", occupation: "None", age: "111" }]
 
 
-console.log("p4=====================================");
 
 let shifted = rowObjects.shift();
 let popped = rowObjects.pop();
@@ -331,7 +363,7 @@ let popped = rowObjects.pop();
 // console.log(rowObjects);
 //console.log(popped);
 
-
+// using splice to insert the object at index 1
 rowObjects.splice(1, 0, { id: "48", name: "Barry", occupation: "Runner", age: "25" });
 
 rowObjects.push({ id: "7", name: "Bilbo", occupation: "None", age: "111" });
@@ -359,14 +391,14 @@ console.log(averageAge +" is the average age of the group.");
 
 
 
-
+console.log("p5=====================================");
 
 // Part 5
 
 // As a final task, transform the final set of data back into CSV format.
 // There are a number of ways to do this; be creative!
 // Once complete, be sure to submit your work according to the submission instructions at the beginning of this document.
-console.log("p5=====================================");
+
 const copy_of_new_object = [...rowObjects];
 //console.log(copy_of_new_object);
 let heading=(Object.keys(rowObjects[0]))
@@ -407,83 +439,15 @@ for (i in copy_of_new_object){
 // All the way back to a string
 console.log(to_csv);
 let new_test_csv = to_csv.join('/n');
+
 console.log(new_test_csv);
+
+
+//added in ''
+//console.log(`'`+new_test_csv+`'`);
 
 // console.log(to_csv.toString());
 //both methods work
 
-
-// for(i in heading){
-//     let temp = rowObjects[i];
-//     console.log(temp[heading[i]]);
-// }
-
-// for(i in heading){
-//     console.log(rowObjects[i+1][heading[i]]);
-// }   
-
-
-// let delimiter_array =  segment_array.concat(break_array);
-// delimiter_array.sort(function(a, b){return a-b});
-// //text_array = [...sample_text_1];
-
-
-// console.log(text_array);
-// console.log(break_array);
-// console.log(segment_array);
-// console.log(delimiter_array);
-// console.log(text_array_2);
-
-// let cell = [];
-
-// for(i in)
-
-// for (let x = 0; x < delimiter_array.length -1; x+=1) {
-//     console.log(delimiter_array[x]);
-//     console.log(sample_text_1[Number(delimiter_array[x+1])]);
-//     console.log(typeof(delimiter_array[x+1]));
-//     console.log(typeof(text_array[delimiter_array[x+1]]));
-
-//         cell.push(text_array.slice(delimiter_array[x]+1, delimiter_array[x+1]));
-//     console.log(text_array[delimiter_array[x]]);
-// console.log(text_array[delimiter_array[x]+1]);
-// }
-//console.log(cell);
-
-
-
-// for (let i = 0; i < delimiter_array.length - 1; i+=1) {
-//     let start = delimiter_array[i];
-//     let end = delimiter_array[i + 1];
-//     cell.push(text_array.slice(start, end).join(''));
-// }
-
-// // Capture the last chunk if necessary
-// if (delimiter_array[delimiter_array.length - 1] < text_array.length) {
-//     cell.push(text_array.slice(delimiter_array[delimiter_array.length - 1]).join(''));
-// }
-
-// console.log(cell);
-// let cell = [];
-// for( i in delimiter_array){
-//     console.log(i);
-//     //    console.log(text_array.slice(delimiter_array[i], delimiter_array[i+1]+1));
-//     // else{
-//     //     cell.push(text_array.slice(delimiter_array[i]+1, delimiter_array[i+1]));
-//     // }
-// }
-// cell=(text_array.splice(0,  2).join(''));
-
-// console.log(cell);
-// for(let i = 0; i <= break_array[0]; i++){
-//    text_array
-// }
-
-// switch (key) {
-//     case value:
-        
-//         break;
-
-//     default:
-//         break;
-// }
+//Print out table for visual
+// console.log(to_csv.join('\n'));
